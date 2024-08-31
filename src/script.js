@@ -12,6 +12,7 @@ const parameters = {
 
 gui.addColor(parameters, "materialColor").onChange(() => {
   material.color.set(parameters.materialColor);
+  particlesMaterial.color.set(parameters.materialColor);
 });
 
 /**
@@ -155,8 +156,14 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  */
 
 let scrollY = window.scrollY;
+let currentSection = 0;
+
 window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
+  const newSection = Math.round(scrollY / sizes.height);
+  if (newSection != currentSection) {
+    currentSection = newSection;
+  }
 });
 
 /**
